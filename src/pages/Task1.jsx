@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import supabase from "../helper/supabaseClient";
-import "./Dashboard.css";
+import "./Task.css";
 
 function Task1() {
   const navigate = useNavigate();
