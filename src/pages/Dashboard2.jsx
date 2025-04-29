@@ -1,8 +1,10 @@
 import React, { useState, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import supabase from "../helper/supabaseClient";
 import "./Dashboard.css";
 
 function Dashboard2() {
+  const navigate = useNavigate();
   const [keystrokes, setKeystrokes] = useState([]);
   const keyDownTime = useRef({});
   const textareaRef = useRef();
@@ -44,8 +46,10 @@ function Dashboard2() {
     if (error) {
       alert("Error uploading: " + error.message);
     } else {
-      alert("CSV uploaded successfully!");
-      print(data);
+      alert(
+        "Thank you so much for your help 🙏✨\nYour support meant a lot. 😊💫"
+      );
+      navigate("/");
     }
 
     setKeystrokes([]);

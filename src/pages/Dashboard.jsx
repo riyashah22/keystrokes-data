@@ -46,8 +46,8 @@ function Dashboard() {
     if (error) {
       alert("Error uploading: " + error.message);
     } else {
-      alert("CSV uploaded successfully!");
-      print(data);
+      alert("One more task to go! 🙌✨");
+      // print(data);
       navigate("/task2");
     }
 
