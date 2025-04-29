@@ -1,11 +1,12 @@
 import React, { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import supabase from "../helper/supabaseClient";
-import "./Dashboard.css";
+import "./Task.css";
 
-function Dashboard2() {
+function Task2() {
   const navigate = useNavigate();
   const [keystrokes, setKeystrokes] = useState([]);
+  const [inputText, setInputText] = useState("");
   const keyDownTime = useRef({});
   const textareaRef = useRef();
 
@@ -28,7 +29,16 @@ function Dashboard2() {
     ]);
   };
 
+  const handleChange = (e) => {
+    setInputText(e.target.value);
+  };
+
   const handleSubmit = async () => {
+    if (inputText.length < 300) {
+      alert("Please type at least 300 characters before submitting.");
+      return;
+    }
+
     // Convert keystrokes to CSV string
     const csvData =
       "press_time,release_time,key\n" +
@@ -53,11 +63,15 @@ function Dashboard2() {
     }
 
     setKeystrokes([]);
+    setInputText("");
     if (textareaRef.current) textareaRef.current.value = "";
   };
 
   return (
     <div className="dashboard-container">
+      <div className="activity-box">
+        Be honest and type your answer in the box below.
+      </div>
       <h2>
         What do you think makes a person truly successful? (atleast 300
         characters)
@@ -67,10 +81,13 @@ function Dashboard2() {
         className="typing-box"
         onKeyDown={handleKeyDown}
         onKeyUp={handleKeyUp}
+        onChange={handleChange}
+        value={inputText}
         placeholder="Start typing here..."
         rows={8}
         cols={50}
       ></textarea>
+      <div>{inputText.length} characters</div>
       <button className="submit-btn" onClick={handleSubmit}>
         Submit
       </button>
@@ -78,4 +95,4 @@ function Dashboard2() {
   );
 }
 
-export default Dashboard2;
+export default Task2;

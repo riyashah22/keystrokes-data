@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import supabase from "../helper/supabaseClient";
 import "./Dashboard.css";
 
-function Dashboard() {
+function Task1() {
   const navigate = useNavigate();
   const [keystrokes, setKeystrokes] = useState([]);
   const keyDownTime = useRef({});
@@ -57,22 +57,21 @@ function Dashboard() {
 
   return (
     <div className="dashboard-container">
-      <div className="activity-box">
-        This activity is designed to help us better understand user interaction
-        patterns during text input. It supports research into improving
-        typing-based assessments and user-centric design.
+      <div>
+        <div className="activity-box">
+          This activity is designed to help us better understand user
+          interaction patterns during text input. It supports research into
+          improving typing-based assessments and user-centric design.
+        </div>
+        <div className="note">Note: Please don't directly copy and paste.</div>
       </div>
       <div className="company-name">Talview</div>
       <div className="paragraph-box">
         Talview is a leading AI-powered talent assessment and remote proctoring
-        company founded in 2013 by IIT Bombay alumni Sanjoe Tom Jose, Mani Ka,
-        Tom Jose and Jobin Jose. Headquartered in San Mateo, California with
-        offices in India and the UK. Talview serves clients in over 120
-        countries. The platform offers automated video interviewing, secure
-        remote proctoring and AI-driven workflows to streamline hiring and
-        testing processes.The company is recognized for innovations like “Alvy”
-        an AI proctoring agent powered by large language models, and adheres to
-        global data security standards.
+        company founded in 2013 by Sanjoe Tom Jose, Mani Ka, Tom Jose and Jobin
+        Jose. Talview serves clients in over 120 countries. The platform offers
+        automated video interviewing, secure remote proctoring and AI-driven
+        workflows to streamline hiring and testing processes.
       </div>
       <h2>Write the above paragraph 📝</h2>
       <textarea
@@ -91,4 +90,4 @@ function Dashboard() {
   );
 }
 
-export default Dashboard;
+export default Task1;

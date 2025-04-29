@@ -33,6 +33,22 @@
   color: #004d40;
   white-space: pre-wrap;
 }
+
+.note {
+  width: 800px;
+  background-color: #e0f7fa;
+  border: 2px solid #00796b;
+  border-radius: 8px;
+  padding: 1rem;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  box-shadow: 0 2px 10px rgba(0, 121, 107, 0.3);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: #ae2124;
+  white-space: pre-wrap;
+}
 .typing-box {
   padding: 1rem;
   font-size: 1rem;
