@@ -34,8 +34,8 @@ function Register() {
       return;
     }
 
-    const uid = loginData.user.id;
-    localStorage.setItem("uid", uid); // Store UID locally
+    const emailId = loginData.user.email;
+    localStorage.setItem("emailId", emailId); // Store emailId locally
     navigate("/task1");
 
     setEmail("");

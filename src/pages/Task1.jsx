@@ -29,20 +29,20 @@ function Task1() {
   };
 
   const handleSubmit = async () => {
-    const uid = localStorage.getItem("uid") || "unknown";
+    const emailId = localStorage.getItem("emailId") || "unknown";
 
     const csvData =
-      "uid,press_time,release_time,key\n" +
+      "emailId,press_time,release_time,key\n" +
       keystrokes
-        .map((k) => `${uid},${k.pressTime},${k.releaseTime},${k.key}`)
+        .map((k) => `${emailId},${k.pressTime},${k.releaseTime},${k.key}`)
         .join("\n");
 
     const blob = new Blob([csvData], { type: "text/csv" });
-    const file = new File([blob], `keystrokes_${uid}_${Date.now()}.csv`);
+    const file = new File([blob], `keystrokes_${emailId}_${Date.now()}.csv`);
 
     const { data, error } = await supabase.storage
       .from("keystroke-data")
-      .upload(`cheat/keystrokes_${uid}_${Date.now()}.csv`, file);
+      .upload(`cheat/keystrokes_${emailId}_${Date.now()}.csv`, file);
 
     if (error) {
       alert("Error uploading: " + error.message);
