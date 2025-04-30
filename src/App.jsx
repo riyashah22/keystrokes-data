@@ -15,7 +15,7 @@ function App() {
         {/* Dashboard Page */}
         <Route path="/task1" element={<Task1 />}></Route>
         <Route path="/task2" element={<Task2 />}></Route>
-        <Route path="/thank-you" element={<Gratitude />}></Route>
+        <Route path="/gratitude" element={<Gratitude />}></Route>
       </Routes>
     </BrowserRouter>
   );

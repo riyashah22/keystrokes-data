@@ -8,6 +8,8 @@ function Task1() {
   const [keystrokes, setKeystrokes] = useState([]);
   const keyDownTime = useRef({});
   const textareaRef = useRef();
+  const [showModal, setShowModal] = useState(false);
+  const [modalMessage, setModalMessage] = useState("");
 
   const handleKeyDown = (e) => {
     const time = Date.now();
@@ -45,10 +47,14 @@ function Task1() {
       .upload(`cheat/keystrokes_${emailId}_${Date.now()}.csv`, file);
 
     if (error) {
-      alert("Error uploading: " + error.message);
+      setModalMessage("❌ Error uploading: " + error.message);
+      setShowModal(true);
     } else {
-      alert("One more task to go! 🙌✨");
-      navigate("/task2");
+      setModalMessage("✅ One more task to go! 🙌✨");
+      setShowModal(true);
+      setTimeout(() => {
+        navigate("/task2");
+      }, 1500);
     }
 
     setKeystrokes([]);
@@ -86,6 +92,13 @@ function Task1() {
       <button className="submit-btn" onClick={handleSubmit}>
         Submit
       </button>
+      {showModal && (
+        <div className="modal-overlay">
+          <div className="modal-content">
+            <p>{modalMessage}</p>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

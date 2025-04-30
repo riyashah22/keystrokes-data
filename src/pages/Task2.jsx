@@ -9,6 +9,8 @@ function Task2() {
   const [inputText, setInputText] = useState("");
   const keyDownTime = useRef({});
   const textareaRef = useRef();
+  const [showModal, setShowModal] = useState(false);
+  const [modalMessage, setModalMessage] = useState("");
 
   const handleKeyDown = (e) => {
     const time = Date.now();
@@ -36,7 +38,8 @@ function Task2() {
   const handleSubmit = async () => {
     const emailId = localStorage.getItem("emailId") || "unknown";
     if (inputText.length < 300) {
-      alert("Please type at least 300 characters before submitting.");
+      setModalMessage("Please type at least 300 characters before submitting.");
+      setShowModal(true);
       return;
     }
 
@@ -55,9 +58,10 @@ function Task2() {
       .upload(`noCheat/keystrokes_${emailId}_${Date.now()}.csv`, file);
 
     if (error) {
-      alert("Error uploading: " + error.message);
+      setModalMessage("❌ Error uploading: " + error.message);
+      setShowModal(true);
     } else {
-      navigate("/thank-you");
+      navigate("/gratitude");
     }
 
     setKeystrokes([]);
@@ -89,6 +93,16 @@ function Task2() {
       <button className="submit-btn" onClick={handleSubmit}>
         Submit
       </button>
+      {showModal && (
+        <div className="modal-overlay">
+          <div className="modal-content">
+            <button className="close-btn" onClick={() => setShowModal(false)}>
+              ×
+            </button>
+            <p>{modalMessage}</p>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
