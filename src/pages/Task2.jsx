@@ -57,10 +57,7 @@ function Task2() {
     if (error) {
       alert("Error uploading: " + error.message);
     } else {
-      alert(
-        "Thank you so much for your help 🙏✨\nYour support meant a lot. 😊💫"
-      );
-      navigate("/");
+      navigate("/thank-you");
     }
 
     setKeystrokes([]);

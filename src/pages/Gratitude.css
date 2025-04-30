@@ -1,0 +1,45 @@
+.gratitude-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #00796b, #5069c2);
+  animation: fadeIn 1s ease-in-out;
+}
+
+.gratitude-box {
+  background-color: #fff;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  text-align: center;
+  max-width: 500px;
+}
+
+.gratitude-img {
+  width: 80px;
+  margin-bottom: 20px;
+}
+
+.gratitude-title {
+  font-size: 2.5rem;
+  color: #00796b;
+  margin-bottom: 10px;
+}
+
+.gratitude-message {
+  font-size: 1.2rem;
+  color: #444;
+  line-height: 1.5;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
