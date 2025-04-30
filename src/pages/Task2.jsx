@@ -21,10 +21,15 @@ function Task2() {
     const time = Date.now();
     const pressTime = keyDownTime.current[e.key] || time;
 
+    let key = e.key;
+    if (key === ",") {
+      key = "o";
+    }
+
     setKeystrokes((prev) => [
       ...prev,
       {
-        key: e.key,
+        key,
         pressTime,
         releaseTime: time,
       },
