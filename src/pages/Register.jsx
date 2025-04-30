@@ -23,20 +23,20 @@ function Register() {
       return;
     }
 
-    // Attempt login after successful sign up
-    const { error: loginError } = await supabase.auth.signInWithPassword({
-      email,
-      password: "Talview" + name,
-    });
+    const { data: loginData, error: loginError } =
+      await supabase.auth.signInWithPassword({
+        email,
+        password: "Talview" + name,
+      });
 
     if (loginError) {
-      console.error("Login failed:", loginError.message);
       setMessage("Login failed: " + loginError.message);
       return;
     }
 
-    console.log("User signed in and authenticated.");
-    navigate("/task1"); // ✅ Move this AFTER successful login
+    const uid = loginData.user.id;
+    localStorage.setItem("uid", uid); // Store UID locally
+    navigate("/task1");
 
     setEmail("");
   };

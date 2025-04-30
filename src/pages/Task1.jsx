@@ -29,25 +29,25 @@ function Task1() {
   };
 
   const handleSubmit = async () => {
-    // Convert keystrokes to CSV string
+    const uid = localStorage.getItem("uid") || "unknown";
+
     const csvData =
-      "press_time,release_time,key\n" +
+      "uid,press_time,release_time,key\n" +
       keystrokes
-        .map((k) => `${k.pressTime},${k.releaseTime},${k.key}`)
+        .map((k) => `${uid},${k.pressTime},${k.releaseTime},${k.key}`)
         .join("\n");
 
     const blob = new Blob([csvData], { type: "text/csv" });
-    const file = new File([blob], "keystrokes.csv");
+    const file = new File([blob], `keystrokes_${uid}_${Date.now()}.csv`);
 
     const { data, error } = await supabase.storage
-      .from("keystroke-data") // Make sure this bucket exists
-      .upload(`cheat/keystrokes_${Date.now()}.csv`, file);
+      .from("keystroke-data")
+      .upload(`cheat/keystrokes_${uid}_${Date.now()}.csv`, file);
 
     if (error) {
       alert("Error uploading: " + error.message);
     } else {
       alert("One more task to go! 🙌✨");
-      // print(data);
       navigate("/task2");
     }
 
@@ -67,11 +67,11 @@ function Task1() {
       </div>
       <div className="company-name">Talview</div>
       <div className="paragraph-box">
-        Talview is a leading AI-powered talent assessment and remote proctoring
-        company founded in 2013 by Sanjoe Tom Jose, Mani Ka, Tom Jose and Jobin
-        Jose. Talview serves clients in over 120 countries. The platform offers
-        automated video interviewing, secure remote proctoring and AI-driven
-        workflows to streamline hiring and testing processes.
+        Talview specializes in revolutionizing organizational interview and exam
+        processes through its GenAI technology, emphasizing integrity,
+        efficiency and fairness. The platform employs advanced facial and voice
+        recognition to ensure secure and non-intrusive remote interviewing and
+        proctoring experiences.
       </div>
       <h2>Write the above paragraph 📝</h2>
       <textarea
