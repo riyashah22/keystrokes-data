@@ -13,18 +13,28 @@ function Register() {
     event.preventDefault();
     setMessage("");
 
+    // Try to insert the user into the table
     const { data, error } = await supabase
       .from("users")
       .insert([{ email: email, name: name }]);
 
     if (error) {
-      setMessage("Error: " + error.message);
+      // Check if the error is a duplicate key error (email already exists)
+      if (
+        error.message.includes("duplicate key value violates unique constraint")
+      ) {
+        setMessage("Error: User already exists. Please use a different email.");
+      } else {
+        setMessage("Error: " + error.message);
+      }
       return;
     }
 
+    // If no error, proceed to save email and navigate to the next page
     localStorage.setItem("emailId", email);
     navigate("/task1");
 
+    // Reset form fields after successful registration
     setEmail("");
     setName("");
   };
