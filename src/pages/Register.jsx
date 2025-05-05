@@ -13,32 +13,20 @@ function Register() {
     event.preventDefault();
     setMessage("");
 
-    const { _, error } = await supabase.auth.signUp({
-      email: email,
-      password: "Talview" + name,
-    });
+    const { data, error } = await supabase
+      .from("users")
+      .insert([{ email: email, name: name }]);
 
     if (error) {
       setMessage("Error: " + error.message);
       return;
     }
 
-    const { data: loginData, error: loginError } =
-      await supabase.auth.signInWithPassword({
-        email,
-        password: "Talview" + name,
-      });
-
-    if (loginError) {
-      setMessage("Login failed: " + loginError.message);
-      return;
-    }
-
-    const emailId = loginData.user.email;
-    localStorage.setItem("emailId", emailId); // Store emailId locally
+    localStorage.setItem("emailId", email);
     navigate("/task1");
 
     setEmail("");
+    setName("");
   };
 
   return (
